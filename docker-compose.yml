@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+    web:
+        build: .
+        command: python -u app.py
+        ports:
+            - "5000:5000"
+        depends_on:
+            - mymongodb
+        environment:
+            MONGODB_HOSTNAME: mymongodb
+    mymongodb:
+        image: mongo:latest
+        ports:
+            - "5001:27017"
